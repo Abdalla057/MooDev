@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .tech-logo {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+        .tech-logo:hover {
+            transform: scale(1.1);
+        }
+        /* Dark mode styles */
+        html.dark {
+            color-scheme: dark;
+        }
+        .dark .bg-white {
+            background-color: #181818;
+        }
+        .dark .text-gray-800 {
+            color: #f1f1f1;
+        }
+        .dark .text-gray-700 {
+            color: #e1e1e1;
+        }
+        .dark .text-gray-600 {
+            color: #d1d1d1;
+        }
+        .dark .border-gray-200 {
+            border-color: #333;
+        }
+        .dark .shadow {
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page {
+            animation: fadeIn 1.7s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen fade-in">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 py-4 flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+                <a href="#" class="text-xl sm:text-2xl font-bold text-primary" data-page="home"><span class="text-orange-700">Moo</span>Dev.</a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 fade-in">
+                <a href="#" class="nav-link font-medium hover:text-primary transition-colors" data-page="home">Accueil</a>
+                <a href="#" class="nav-link font-medium hover:text-primary transition-colors" data-page="about">A prospos</a>
+                <a href="#" class="nav-link font-medium hover:text-primary transition-colors" data-page="projects">Projets</a>
+                <a href="#" class="nav-link font-medium hover:text-primary transition-colors" data-page="services">Services</a>
+                <a href="#" class="nav-link font-medium hover:text-primary transition-colors" data-page="contact">Contact</a>
+            </nav>
+            
+            <button id="mobile-menu-button" class="md:hidden flex items-center fade-in">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden py-4 px-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+            <a href="#" class="block py-2 hover:text-primary" data-page="home">Accueil</a>
+            <a href="#" class="block py-2 hover:text-primary" data-page="about">A propos</a>
+            <a href="#" class="block py-2 hover:text-primary" data-page="projects">Projets</a>
+            <a href="#" class="block py-2 hover:text-primary" data-page="services">Services</a>
+            <a href="#" class="block py-2 hover:text-primary" data-page="contact">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Back Button -->
+        <button id="back-button" class="hidden mb-6 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-orange-800 transition-colors">
+            <i class="fas fa-arrow-left mr-2 "></i> Retour
+        </button>
+
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-10 mb-16">
+                <div class="w-full md:w-1/2">
+                    <h1 class="text-4xl sm:text-5xl font-bold mb-6 text-gray-900 dark:text-white">Salut<span class="text-orange-600"> je suis </span>Abdoulaye Ba</h1>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">Développeur full stack spécialisé dans le développement de logiciels et d'applications mobiles.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-900  md:inline text-white rounded-lg hover:bg-opacity-90 transition-colors" data-page="projects">Voir mon travail</a>
+                        <a href="#" class="px-6 py-3 text-white rounded-lg hover:bg-primary hover:text-white transition-colors bg-gradient-to-r from-pink-700 to-orange-700  md:inline" data-page="contact">Contact Me</a>
+                    </div>
+                </div>
+                <div class="w-80 md:w-2/2   md:inline rounded-full overflow-hidden ">
+                    <!-- image hero -->
+                    <div class="aspect-w-4 aspect-h-3 w-FULL h-full flex items-center justify-center text-gray-500 dark:text-gray-400 mt-4">
+                        <img src="./assets/HeroImage.jpg" alt="" class="w-50 h-auto rounded-full">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aperçu des sections mises en avant -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <i class="fas fa-user-tie text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">A propos de moi</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Apprendre plus a propos de mon passé, compétences et experience.</p>
+                    <a href="#" class="text-primary hover:underline" data-page="about">Lire plus →</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <i class="fas fa-code text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Mes projets</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Découvrer l'ensemble de mes projets</p>
+                    <a href="#" class="text-primary hover:underline" data-page="projects">Voir les projets→</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <i class="fas fa-tools text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Services</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Découvrez les services que j'offre à mes clients </p>
+                    <a href="#" class="text-primary hover:underline" data-page="services">Apprendre plus →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- page de propos -->
+        <section id="about" class="page">
+            <div class="max-w-3xl mx-auto px-4">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-gray-900 dark:text-white text-center">Apropos de <span class="text-primary">moi</span></h2>
+                <div class="flex flex-col md:flex-row gap-5">
+                    <div class="md:w-1/3 flex items-center justify-center text-gray-500 dark:text-gray-400 mb-6 md:mb-0">
+                        <div class="text-center">
+                            <img src="./assets/maphoto.PNG" alt="Image circulaire" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto" />
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-4">
+                            Je suis développeur full-stack spécialisé dans le développement d'applications mobiles.
+                            Je maîtrise aussi bien le front-end que le back-end, ce qui me permet de créer des solutions 
+                            performantes, intuitives et adaptées aux besoins des utilisateurs, aussi bien sur le web que sur mobile.
+                        </p>
+                        <p class="text-base md:text-lg text-gray-700 dark:text-gray-300">
+                            Quand je ne code pas, vous me trouverez en train d'explorer de nouvelles technologies, de contribuer à des projets open source ou de profiter d'activités en plein air pour maintenir un mode de vie équilibré.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-12 mb-8">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Mes <span class="text-primary">compétence</span></h3>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#E44D26" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">HTML</h4>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#1572B6" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">CSS</h4>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#000000" d="M11.5725 0c-.1763 0-.3098.0013-.3584.0067-.0516.0053-.2159.021-.3636.0328-3.4088.3073-6.6017 2.1463-8.624 4.9728C1.1004 6.584.3802 8.3666.1082 10.255c-.0962.659-.108.8537-.108 1.7474s.012 1.0884.108 1.7476c.652 4.506 3.8591 8.2919 8.2087 9.6945.7789.2511 1.6.4223 2.5337.5255.3636.04 1.9354.04 2.299 0 1.6117-.1783 2.9772-.577 4.3237-1.2643.2065-.1056.2464-.1337.2183-.1573-.0188-.0139-.8987-1.1938-1.9543-2.62l-1.919-2.592-2.4047-3.5583c-1.3231-1.9564-2.4117-3.556-2.4211-3.556-.0094-.0026-.0187 1.5787-.0187 3.509 0 3.3802.0094 3.5162.0716 3.636.061.1138.1312.2081.2342.2708.2065.1317.3077.1624.5497.1624.4727 0 .8105-.3053.9578-.7553.0424-.1337.0471-.7553.0471-4.622 0-4.0291-.0047-4.4892-.0657-4.6541-.115-.3236-.3927-.5129-.7364-.5129-.3437 0-.8105.2456-1.0394.545-.0562.0748-.1312.1736-.1707.2153-.0376.0376-.0752.075-.0782.075-.0094 0-.984-1.3066-2.1648-2.9069l-2.147-2.9068-.0469-.0789c-.0376-.0698-.0657-.1159-.0938-.147-.0822-.0935-.2531-.1906-.3989-.2336-.1082-.0376-.4727-.0385-.5929-.0016zm4.0685 7.217c.3909.0582.7136.2644.9681.6169.0469.0653.3413.4782.6597.9191l.5811.8007.5593-.768c.3069-.4216.591-.812.6328-.868.1358-.1807.3291-.3413.539-.4452.1104-.0545.1427-.059.3997-.0663.4092-.0187.6686.0327.9728.183.4117.2096.7136.6169.8105 1.0959.0376.2153.0376 4.0261 0 4.2414-.0975.4986-.4021.913-.8364 1.1245-.2124.1033-.3526.1317-.7108.1435-.4819.0156-.6889-.0185-.9915-.1619-.1906-.0935-.2989-.175-.4932-.3815-.0469-.0498-.3056-.403-.5763-.7838l-.4916-.6925-.5498.7553c-.3023.4145-.5827.7904-.6234.8341-.2089.2266-.4564.3524-.8012.4053-.1347.0212-.2171.0212-.3479 0-.3769-.0595-.6695-.2088-.8848-.4531-.1104-.1268-.1967-.2973-.2383-.4679l-.0366-.1383-.0094-2.0955c-.0047-1.7351.0014-2.1313.0329-2.222.0542-.1647.1081-.2784.1906-.4029.2477-.3749.6657-.6076 1.1418-.6348.1394 0 .2594.0047.2828.0047zm-10.6993.02c.6611.0176 1.0816.2567 1.3602.7711.1104.2031.1124.2153.1124 2.1374 0 1.798-.0066 1.9473-.0751 2.1374-.1688.4697-.5378.8035-1.0206.9262-.1906.0498-.2805.059-.4959.0533-.2699-.008-.3954-.0333-.5687-.116-.5356-.2516-.8614-.8222-.8614-1.5035-.0014-.1317.0047-.2303.0141-.2303.0094 0 .9962 1.3544 2.1912 3.0097 1.195 1.6554 2.1868 3.0192 2.2026 3.0305.0424.0287.0469.0212.0469-.0779 0-.0653-.0329-.1782-.0751-.252-.0421-.0744-.9824-1.3509-2.0893-2.8359-1.1068-1.485-2.0171-2.7053-2.0218-2.712-.0095-.0067.6921-.0093 1.5584-.0067 1.4855.0067 1.5865.0093 1.7395.059.3526.116.5995.3729.6985.7261.047.1687.047.1998.0423 2.0201-.0046 1.7995-.0067 1.854-.0584 1.9742-.0869.2032-.2558.387-.4746.5162-.2018.1199-.2877.1528-.5332.1997-.1029.0185-.257.0348-.3413.0348-.1946.0017-.3882-.0275-.583-.0864-.4493-.1371-.7808-.5511-.877-1.0959-.0282-.157-.0376-3.2242-.0094-3.3792.0939-.5256.5405-.9521 1.1184-1.0677.063-.0186.2805-.0405.4828-.0498.2065-.0092.3952-.0211.424-.0259.0282-.0047 1.2265-.0012 2.663.008l2.6127.017 2.1582 2.9259c1.1871 1.6091 2.1818 2.9447 2.2108 2.9682.0517.0429.0564.0376.0564-.0683 0-.0637-.0188-.1436-.0423-.1809-.0235-.0367-.977-1.3005-2.1178-2.8075l-2.0752-2.7405.8553-.0099c.7225-.0078.8835 0 1.0158.0374.2851.0833.5025.2417.6503.4777.0751.1198.0829.1527.0957.3958.0094.1782.0094.7834.0017 1.9164-.0113 1.6844-.0127 1.7149-.059 1.8658-.0891.2928-.1989.4633-.4114.6322-.1852.1483-.3178.2029-.5904.2433-.2805.0422-.5927-.0055-.8801-.1354-.3413-.1542-.6049-.4709-.7058-.8489-.0282-.1017-.0376-.4074-.0376-.9473v-.8158l-1.0487-1.4276-1.0464-1.4254-.0094 1.1221c-.0047.6169-.0141 1.1674-.0188 1.2246-.0142.1331-.0848.3432-.1641.4971-.1854.3541-.5355.6009-.9543.6679-.1335.0204-.4162.0186-.5427-.0038-.3058-.0566-.5521-.1865-.7424-.3954-.1465-.1597-.235-.3345-.2945-.5837-.0188-.0744-.0329-1.0677-.0329-2.5458 0-2.4553.0015-2.4365.071-2.6472.0954-.2932.2276-.4848.4458-.6455.1583-.116.2945-.1809.4865-.2303.1301-.0337 3.8007-.0467 4.1934-.0148zm7.4445.9602c-.1347.075-.1712.195-.1712.5464v.2957l.0423-.0327c.0235-.0168.5216-.7094 1.1068-1.5371l1.0629-1.5034-.5498.0013c-.5028.0013-.5568.0047-.6627.072-.0094.0046-.0188.0097-.0283.0155zm-9.6397.0132c-.1089.0553-.1498.1318-.1677.3101-.0094.0872-.0094.2973-.0019.4674l.0141.3099.7401 1.0074 1.2124 1.6512c.0424.0582.0799.1068.0846.1069.0045.0016.011-.4538.011-1.0094 0-.9697-.0046-1.0149-.0752-1.1503-.0612-.1147-.1347-.1737-.2464-.1969-.0376-.0083-.3997-.0151-.8036-.0151h-.7376v-.4822l1.0115.0047c1.1748.0054 1.2148.0109 1.4072.183.152.1352.2241.3047.2547.5978.0094.0965.0141.7809.0141 1.67v1.5034l-.0657.1297c-.0752.1492-.179.2322-.347.2776-.0798.0213-.2112.0244-.8683.0197l-.7776-.0054-.0657-.0377c-.0376-.0213-.1876-.2195-.334-.4412-.147-.2214-1.3638-1.8649-2.7087-3.6515C6.4674 8.7437 6.362 8.6042 6.2938 8.5834c-.0799-.0248-1.4473-.0124-1.5254.0123zm4.8286 0c-.1488.0748-.1952.1748-.1952.4139 0 .1028.0094.2234.0188.2681.0141.0685.0891.1972.5217.8998.7685 1.2467 1.5559 2.5222 1.5724 2.5492.0141.0213.0281-.4921.0329-1.1429.0068-.9885-.0016-1.201-.0471-1.2878-.0519-.0989-.0893-.1282-.1829-.1501-.0361-.0085-.3865-.0145-.7826-.0145h-.7214v-.4822l1.0347.0038c.8484.0032 1.0535.0077 1.1466.0328.2277.062.3475.1901.399.4292.0187.08.0244.3835.0244 1.2337v1.1245l-.0469.1139c-.06.1393-.1618.2332-.3225.2961l-.1335.0522h-.7706c-.7637 0-.7718 0-.8448-.0584-.0414-.0328-.2158-.2759-.3897-.5397-.1739-.2639-1.5395-2.3324-3.0366-4.5972-1.497-2.2647-2.7302-4.1308-2.7402-4.1469-.0187-.0293-.0352-.0297-.1241-.0063-.0517.0132-.1312.048-.1753.077z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">Next.js</h4>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#61DAFB" d="M12,10.11c1.03,0,1.87,0.84,1.87,1.89c0,1.04-0.84,1.87-1.87,1.87s-1.87-0.83-1.87-1.87 C10.13,10.95,10.97,10.11,12,10.11z M7.37,20c0.63,0.38,2.01-0.2,3.6-1.7c-0.52-0.59-1.03-1.23-1.51-1.9 c-0.82-0.08-1.63-0.2-2.4-0.36C6.94,17.72,6.78,19.64,7.37,20z M7.36,12.02c0.75-0.15,1.54-0.26,2.35-0.33 c0.46-0.69,0.96-1.34,1.46-1.96C9.56,8.43,8.22,7.85,7.44,8.33c-0.8,0.51-0.91,2.48-0.09,4.14 C7.32,12.33,7.35,12.17,7.36,12.02z M16.77,11.36c0.09,0.47,0.15,0.94,0.17,1.39c1.37-0.23,2.36-0.55,2.91-0.87 c0.21-1.09-0.23-2.18-1.01-2.63c-0.77-0.42-2,0.12-3.31,1.25C16.06,10.82,16.43,11.09,16.77,11.36z M16.96,16.63 c0.02-0.31,0.03-0.63,0.03-0.95c0-0.5-0.03-1.01-0.09-1.52c-0.37-0.09-0.77-0.17-1.19-0.24c-0.34-0.05-0.7-0.09-1.06-0.13 c0.19,0.32,0.38,0.65,0.56,0.99c0.3,0.55,0.58,1.1,0.81,1.66C16.33,16.53,16.66,16.6,16.96,16.63z M12,19.96 c0.91-0.11,1.85-1.55,2.57-3.59c-0.28-0.58-0.59-1.2-0.94-1.83c-0.21-0.37-0.42-0.74-0.65-1.1c-0.44-0.03-0.89-0.05-1.33-0.05 c-0.52,0-1.04,0.02-1.55,0.07c-0.2,0.33-0.39,0.67-0.56,1.02c-0.34,0.64-0.65,1.29-0.92,1.93C9.38,18.45,10.34,19.89,12,19.96z M5.5,12.01c0,1.22,0.15,2.4,0.42,3.53c0.69,0.15,1.41,0.28,2.14,0.38c-0.26-0.56-0.49-1.14-0.69-1.72 c-0.23-0.64-0.42-1.29-0.58-1.95C6.26,12.25,5.83,12.14,5.5,12.01z M6.25,4.07C5.41,4.45,4.79,5.53,5,6.58 c0.36,0.19,1.08,0.39,2.12,0.55c0.06-0.37,0.15-0.73,0.26-1.08C7.82,5.08,8.32,4.15,8.97,3.31C7.98,3.43,7.01,3.68,6.25,4.07z M17.12,8.64c0.51-0.29,0.85-0.92,0.89-1.65c-0.27-0.07-0.58-0.13-0.91-0.18c-0.43-0.05-0.89-0.09-1.39-0.1 c-0.19,0.27-0.39,0.54-0.59,0.82c-0.38,0.52-0.74,1.05-1.09,1.6C14.92,9.27,16.03,9.28,17.12,8.64z M15.95,3.81 c-1.15-0.52-2.5-0.79-3.94-0.79c-1.36,0-2.64,0.24-3.76,0.71C7.92,5.06,7.77,6.12,7.66,7.06c0.6-0.04,1.21-0.06,1.82-0.06 C11.76,6.99,14.72,7.67,15.95,3.81z M18.53,5.33c-1.21-1.8-3.45-2.97-5.98-3.22c1.01,1.97-0.72,4.16-3.03,4.19 c-0.9,0.01-1.8-0.03-2.69-0.08c-0.34,1.3-0.54,2.7-0.55,4.19c0,3.14,0.9,6.02,2.35,8.27C10.24,20.9,12.9,22,15.81,22 C19.47,22,22.56,18.88,22.56,12C22.56,9.07,20.99,6.32,18.53,5.33z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">React js</h4>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#06B6D4" d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">Tailwind</h4>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#3178C6" d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">TypeScript</h4>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#F7DF1E" d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">JavaScript</h4>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#3776AB" d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">Python</h4>
+                        </div>
+
+
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#31A8FF" d="M9.85 8.42c-.37-.15-.77-.21-1.18-.21-1.16 0-2.13.36-2.89 1.08-.76.71-1.14 1.62-1.14 2.73 0 1.14.36 2.04 1.07 2.73.71.68 1.63 1.03 2.77 1.03.83 0 1.7-.28 2.59-.83v2.1c-.84.5-1.83.74-2.96.74-1.61 0-2.95-.54-4.02-1.61s-1.61-2.38-1.61-3.92.57-2.84 1.71-3.91S6.95 6.75 8.56 6.75c1.06 0 2.03.21 2.9.63v2.55M23.53 12.28c0 1.52-.53 2.81-1.61 3.89-1.08 1.07-2.37 1.61-3.87 1.61-1.5 0-2.8-.54-3.89-1.61-1.07-1.07-1.6-2.37-1.6-3.89s.53-2.81 1.6-3.89c1.08-1.07 2.38-1.61 3.89-1.61 1.51 0 2.8.54 3.87 1.61 1.08 1.08 1.61 2.38 1.61 3.89m-2.59 0c0-1.08-.34-1.96-1.03-2.65-.69-.7-1.58-1.04-2.68-1.04-1.08 0-1.97.35-2.67 1.04-.7.69-1.04 1.57-1.04 2.65 0 1.07.35 1.96 1.04 2.64.69.68 1.58 1.03 2.67 1.03 1.1 0 1.99-.34 2.68-1.03.69-.68 1.03-1.57 1.03-2.64"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">Photoshop</h4>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="tech-logo bg-gray-100 dark:bg-gray-800 rounded-full p-3 mb-3 flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#FF9A00" d="M16.6 10c-0.4-0.4-0.4-1.1 0-1.6 0 0 0.3-0.3 0.4-0.3 0.1-0.1 0.2-0.2 0.2-0.5 0-0.3-0.2-0.6-0.5-0.6 -0.3 0-0.5 0.3-0.5 0.6 0 0.2 0.1 0.3 0.2 0.4 0 0 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.8 0 1.1 -0.3 0.3-0.8 0.3-1.1 0 0 0-0.3-0.3-0.4-0.4 -0.1-0.1-0.2-0.2-0.4-0.2 -0.3 0-0.5 0.2-0.5 0.5 0 0.3 0.3 0.5 0.6 0.5 0.2 0 0.3-0.1 0.4-0.2 0 0 0.3-0.3 0.3-0.3 0.4-0.4 1.1-0.4 1.6 0 0.4 0.4 0.4 1.1 0 1.6l-0.8 0.8c-0.1 0.1-0.2 0.2-0.2 0.4 0 0.3 0.2 0.5 0.5 0.5 0.3 0 0.5-0.2 0.5-0.5 0-0.2-0.1-0.3-0.2-0.4l0.8-0.8C17.1 11.1 17.1 10.4 16.6 10zM11.3 6.4c-0.2 0.2-0.4 0.3-0.6 0.3 -0.4 0-0.8-0.3-0.8-0.8 0-0.4 0.3-0.8 0.8-0.8 0.4 0 0.8 0.3 0.8 0.8 0 0.2-0.1 0.4-0.2 0.5L10 7.7c-0.1 0.1-0.2 0.3-0.2 0.5 0 0.4 0.3 0.8 0.8 0.8 0.4 0 0.8-0.3 0.8-0.8 0-0.2-0.1-0.4-0.2-0.5L11.3 6.4zM13.8 12c-0.1-0.1-0.2-0.2-0.4-0.2 -0.3 0-0.5 0.2-0.5 0.5 0 0.3 0.2 0.5 0.5 0.5 0.2 0 0.3-0.1 0.4-0.2 0.2-0.2 2-2 2-2 0.1-0.1 0.2-0.3 0.2-0.5 0-0.4-0.3-0.8-0.8-0.8 -0.4 0-0.8 0.3-0.8 0.8 0 0.2 0.1 0.4 0.2 0.5L13.8 12zM15.7 17.7c-0.4-0.9-1.3-1.5-2.3-1.5 -0.8 0-1.5 0.4-2 0.9l-1.2-1.2L12.9 12l1.7-0.1 0.4-1.7 -3.9 0.3 0 0 0 0 0 0 -0.4 1.7 1.6-0.1 -2.7 3.8 -1.1-1.1C8.2 14.3 7.5 14 6.7 14c-1 0-1.9 0.6-2.3 1.5 -0.6-0.3-1-1-1-1.7 0-1.1 0.9-2 2-2 0.1 0 0.2 0 0.3 0l0-1.1c-0.1 0-0.2 0-0.3 0 -1.7 0-3.1 1.4-3.1 3.1 0 1.7 1.4 3.1 3.1 3.1 1.7 0 3.1-1.4 3.1-3.1 0-0.1 0-0.2 0-0.3l3.4 3.4c-0.1 0.2-0.1 0.4-0.1 0.7 0 1.7 1.4 3.1 3.1 3.1 1.7 0 3.1-1.4 3.1-3.1C18.8 19.1 17.4 17.7 15.7 17.7zM6.7 17.8c-1.1 0-2-0.9-2-2s0.9-2 2-2c0.7 0 1.3 0.4 1.7 0.9 0 0.1 0 0.2 0 0.3C8.4 16.1 7.8 17.2 6.7 17.8zM15.7 22.8c-1.1 0-2-0.9-2-2 0-0.2 0-0.4 0.1-0.5 0.1 0 0.1 0 0.2 0 0.5 0.1 1 0.3 1.4 0.7 0.4 0.4 0.6 0.8 0.7 1.4 0 0.1 0 0.1 0 0.2C16 22.7 15.8 22.8 15.7 22.8zM16.7 21.6C16.7 21.6 16.7 21.6 16.7 21.6 16.7 21.5 16.7 21.5 16.7 21.6c-0.1-0.3-0.2-0.6-0.5-0.9s-0.6-0.4-0.9-0.5c0 0 0 0 0.1 0C16 20.2 16.6 20.9 16.7 21.6zM12.1 11.3l1.1-1.9 1 1c0 0-1.9 1.9-1.9 1.9L12.1 11.3zM24 13.7c0-1.7-1.4-3.1-3.1-3.1 -1.7 0-3.1 1.4-3.1 3.1 0 0.8 0.3 1.5 0.8 2 -0.5 0.6-1.2 1-2.1 1 -0.7 0-1.3-0.3-1.7-0.7l-0.7 0.7c0.7 0.7 1.6 1.1 2.6 1.1 1 0 1.9-0.4 2.5-1.1 0.6 0.3 1.2 0.5 1.9 0.5C22.6 16.8 24 15.4 24 13.7zM20.9 15.8c-1.1 0-2-0.9-2-2s0.9-2 2-2c1.1 0 2 0.9 2 2S22 15.8 20.9 15.8z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-sm md:text-base text-gray-800 dark:text-gray-200">Illustrator</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- page des projects -->
+        <section id="projects" class="page">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-gray-900 dark:text-white">Mes <span class="text-primary">Projects</span></h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Project 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-5xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">E-commerce siteWeb</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Une plateforme e-commerce entièrement responsive avec un catalogue de produits, une fonctionnalité de panier et un processus de paiement sécurisé, comme Moodfruits et MooDev.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">HTML</span>
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">CSS</span>
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Next.js</span>
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">TailwindCSS</span>
+                            </div>
+                            <a href="#" class="text-primary hover:underline">voir project →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            <i class="fas fa-mobile-alt text-5xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Page de destination pour une application mobile</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Une page de destination moderne pour une application mobile avec une section de fonctionnalités animées et des témoignages..</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">HTML</span>
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">CSS</span>
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">JavaScript</span>
+                            </div>
+                            <a href="#" class="text-primary hover:underline">Voir Project →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-5xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Tableau de bord analytique</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Un tableau de bord interactif pour visualiser les métriques commerciales et les KPI avec des mises à jour de données en temps réel.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">React</span>
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">TailwindCSS</span>
+                            </div>
+                            <a href="#" class="text-primary hover:underline">Voir Project →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            <i class="fas fa-utensils text-5xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">site web de restaurant</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Un site web élégant pour un restaurant local mettant en avant le menu, les réservations en ligne et les informations de contact..</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">HTML</span>
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">CSS</span>
+                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">JavaScript</span>
+                            </div>
+                            <a href="#" class="text-primary hover:underline">Voir Project →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Page -->
+        <section id="services" class="page">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-gray-900 dark:text-white">Mes <span class="text-primary">Services</span></h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Service 1 -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mb-4">
+                            <i class="fas fa-laptop text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Web Design</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Création de sites web modernes, élégants et responsives, qui s’adaptent à tous les appareils et offrent une excellente expérience utilisateur.</p>
+                    </div>
+                    
+                    <!-- Service 2 -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mb-4">
+                            <i class="fas fa-code text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Web Development</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Création de sites web et d'applications web sur mesure avec un code propre et efficace, offrant de bonnes performances et facile à maintenir.</p>
+                    </div>
+                    
+                    <!-- Service 3 -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mb-4">
+                            <i class="fas fa-mobile-alt text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Conception mobile-first</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Conception et développement de sites web qui priorisent l'expérience mobile tout en ayant un superbe rendu sur desktop..</p>
+                    </div>
+                    
+                    <!-- Service 4 -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mb-4">
+                            <i class="fas fa-search text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">optimisation</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Mise en œuvre des meilleures pratiques en matière d'optimisation pour les moteurs de recherche (SEO) afin d'aider votre site web à mieux se positionner dans les résultats de recherche..</p>
+                    </div>
+                    
+                    <!-- Service 5 -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mb-4">
+                            <i class="fas fa-paint-brush text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">UI/UX Design</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Création d'interfaces utilisateur intuitives et d'expériences utilisateur fluides qui ravissent les visiteurs et les maintiennent engagés..</p>
+                    </div>
+                    
+                    <!-- Service 6 -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-14 h-14 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mb-4">
+                            <i class="fas fa-server text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Website Maintenance</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Fournir un support continu, des mises à jour et des améliorations pour maintenir votre site web sécurisé, rapide et à jour..</p>
+                    </div>
+                </div>
+                
+                <div class="bg-primary bg-opacity-5 dark:bg-opacity-10 p-8 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Besoin d'un service personnalisé.?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6">Si vous ne trouvez pas ce que vous cherchez, je propose des solutions personnalisées adaptées à vos besoins spécifiques. Contactez-moi pour discuter de vos exigences de projet.s.</p>
+                    <a href="#" class="inline-flex items-center px-5 py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors" data-page="contact">
+                        <i class="fas fa-envelope mr-2"></i> Contactez-moi
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-gray-900 dark:text-white">Entrer <span class="text-primary">votre contact</span></h2>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">information du contact</h3>
+                            <div class="flex items-start mb-4">
+                                <div class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-3">
+                                    <i class="fas fa-envelope text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Email</p>
+                                    <p class="text-gray-800 dark:text-gray-200">bahabdalla057@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start mb-4">
+                                <div class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-3">
+                                    <i class="fas fa-phone-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">telephone</p>
+                                    <p class="text-gray-800 dark:text-gray-200">+ 221 77 912 92 54</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-3">
+                                    <i class="fas fa-map-marker-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Location</p>
+                                    <p class="text-gray-800 dark:text-gray-200">Dakar, Sénégal</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <h4 class="text-lg font-medium mb-3">Suivez moi</h4>
+                                <div class="flex space-x-4">
+                                    <a href="https://www.linkedin.com/in/abdoulaye-ba-8bb546354/" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="https://github.com/Abdalla057" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href=" https://x.com/" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                        <i class="fab fa-dribbble"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Envoyer un Message</h3>
+                            <form id="contact-form">
+                                <div class="mb-4">
+                                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nom</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+                                </div>
+                                <button type="submit" class="w-full px-6 py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                                    <i class="fas fa-paper-plane mr-2"></i> Envoyer Message
+                                </button>
+                            </form>
+                            <div id="form-message" class="mt-4 text-center hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-100 dark:bg-gray-800 py-8 border-t border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-xl font-bold text-orange-700" data-page="home" >Abdallah</a>
+                    <p class="text-gray-600 dark:text-gray-400 mt-2">Créer des expériences web incroyables</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary" data-page="home">Accueil</a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary" data-page="about">Propos</a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary" data-page="projects">Projects</a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary" data-page="services">Services</a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary" data-page="contact">Contact</a>
+                </div>
+            </div>
+            <div class="text-center mt-8 text-gray-600 dark:text-gray-400 text-sm">
+                &copy; <span id="current-year"></span> Mon Portfolio. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        // Current year for copyright
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Page navigation
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('[data-page]');
+        const backButton = document.getElementById('back-button');
+        
+        let pageHistory = ['home'];
+        
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation highlighting
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('text-primary');
+                } else {
+                    link.classList.remove('text-primary');
+                }
+            });
+            
+            // Add to history if it's different from current page
+            if (pageHistory[pageHistory.length - 1] !== pageId) {
+                pageHistory.push(pageId);
+            }
+            
+            // Show/hide back button
+            if (pageHistory.length > 1) {
+                backButton.classList.remove('hidden');
+            } else {
+                backButton.classList.add('hidden');
+            }
+            
+            // Scroll to top when changing pages
+            window.scrollTo(0, 0);
+            
+            // Close mobile menu when navigating
+            mobileMenu.classList.add('hidden');
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        backButton.addEventListener('click', () => {
+            // Remove current page from history
+            pageHistory.pop();
+            // Get previous page
+            const previousPage = pageHistory[pageHistory.length - 1];
+            // Show previous page without adding to history
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(previousPage).classList.add('active');
+            
+            // Update navigation highlighting
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-page') === previousPage) {
+                    link.classList.add('text-primary');
+                } else {
+                    link.classList.remove('text-primary');
+                }
+            });
+            
+            // Hide back button if we're at the first page
+            if (pageHistory.length <= 1) {
+                backButton.classList.add('hidden');
+            }
+        });
+        
+        // Contact form submission
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simulate form submission
+                formMessage.textContent = "Thanks for your message! I'll get back to you soon.";
+                formMessage.classList.remove('hidden', 'text-red-500');
+                formMessage.classList.add('text-green-500');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                }, 5000);
+            });
+        }
+    </script>
+</body>
+</html>
